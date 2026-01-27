@@ -19,4 +19,5 @@ RUN yarn build
 EXPOSE 4173
 
 # Vite preview serves the built dist folder
-CMD ["yarn", "preview", "--host", "0.0.0.0"]
+ENV BROWSER=none
+CMD ["yarn", "preview", "--host", "0.0.0.0", "--open", "false"]
