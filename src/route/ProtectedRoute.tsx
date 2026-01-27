@@ -6,9 +6,13 @@ import useAuth from '@/utils/hooks/useAuth'
 const { unAuthenticatedEntryPath } = appConfig
 
 const ProtectedRoute = () => {
-  const { authenticated } = useAuth()
+  const { authenticated, mustChangePassword } = useAuth()
 
   const location = useLocation()
+
+  if (mustChangePassword) {
+    return <Navigate replace to="/change-password" />
+  }
 
   if (!authenticated) {
     return (

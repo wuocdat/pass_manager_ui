@@ -8,12 +8,47 @@ export type ForgotPasswordReq = {
 }
 
 export interface SignInResponse {
+  id?: string
+  fullName?: string
+  authority?: string[]
+  phoneNumber?: string
+  email?: string
+  access_token?: string
+  accessToken?: string
+  token?: string
+  refresh_token?: string
+  refreshToken?: string
+  expires_in?: number
+  expireTime?: number
+  must_change_password?: boolean
+  user?: {
+    id?: string
+    fullName?: string
+    authority?: string[]
+    phoneNumber?: string
+    email?: string
+    role?: string[] | string
+  }
+  role?: string[] | string
+  user_key?: {
+    id?: string
+    wrappedMasterKey?: string
+    kdfSalt?: string
+    kdfParams?: {
+      memory?: number
+      algorithm?: 'argon2id'
+      hashLength?: number
+      iterations?: number
+      parallelism?: number
+    }
+    keyVersion?: number
+  }
+}
+
+export type MeResponse = {
   id: string
-  fullName: string
-  authority:[]
-  phoneNumber: string
   email: string
-  access_token: string
+  role: string
 }
 
 export interface ResponseInfoObject {
@@ -29,4 +64,3 @@ export type SignUpCredential = {
   username: string
   password: string
 }
-

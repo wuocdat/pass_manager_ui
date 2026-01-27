@@ -55,6 +55,15 @@ const navigationConfig: NavigationTree[] = [
     subMenu: [],
   },
   {
+    key: 'users',
+    path: '/users',
+    title: 'Users',
+    translateKey: '',
+    icon: IconUsers,
+    authority: ['admin'],
+    subMenu: [],
+  },
+  {
     key: 'settings',
     path: '/settings',
     title: 'Settings',

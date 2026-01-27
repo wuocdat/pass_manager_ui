@@ -1,7 +1,7 @@
 import {Server, Response} from 'miragejs'
 
 export default function authFakeApi(server: Server, apiPrefix: string) {
-  server.post(`${apiPrefix}/users/sign-in`, (schema, {requestBody}) => {
+  server.post(`${apiPrefix}/auth/login`, (schema, {requestBody}) => {
     const {
       email,
       password

@@ -47,4 +47,10 @@ export const protectedRoutes = [
     component: lazy(() => import('@/pages/app/SharingManagement')),
     authority: []
   },
+  {
+    key: 'userManagement',
+    path: '/users',
+    component: lazy(() => import('@/pages/app/UserManagement')),
+    authority: ['admin']
+  },
 ]

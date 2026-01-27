@@ -20,6 +20,12 @@ const authRoute: Routes = [
     component: lazy(() => import('@/pages/auth/ForgotPassword')),
     authority: []
   },
+  {
+    key: 'changePassword',
+    path: `/change-password`,
+    component: lazy(() => import('@/pages/auth/ChangePasswordFirstLogin')),
+    authority: []
+  },
 ]
 
 export default authRoute

@@ -9,12 +9,18 @@ export type AppConfig = {
   layoutType: LayoutTypes,
 }
 
+const apiPrefix = import.meta.env.VITE_API_PREFIX || 'http://localhost:3000'
+const enableMock =
+  typeof import.meta.env.VITE_ENABLE_MOCK === 'string'
+    ? import.meta.env.VITE_ENABLE_MOCK.toLowerCase() === 'true'
+    : false
+
 const appConfig: AppConfig = {
   layoutType: LayoutTypes.CollapsibleAppShell,
-  apiPrefix: '',
+  apiPrefix,
   authenticatedEntryPath: '/vault',
   unAuthenticatedEntryPath: '/sign-in',
-  enableMock: true,
+  enableMock,
   locale: 'en',
 }
 

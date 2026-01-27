@@ -30,8 +30,8 @@ export default function SignIn() {
 
   const form = useForm({
     initialValues: {
-      email: 'admin@test.com',
-      password: '12345qwerty',
+      email: '',
+      password: '',
     },
     validate: yupResolver(schema),
   });
@@ -49,7 +49,11 @@ export default function SignIn() {
 
   return (
     <div className={classes.page}>
-      <form onSubmit={form.onSubmit(handleSubmit)} className={classes.panel}>
+      <form
+        onSubmit={form.onSubmit(handleSubmit)}
+        className={classes.panel}
+        autoComplete="off"
+      >
         <div className={classes.stack}>
           <Group gap="sm">
             <IconShieldLock size={28} color="var(--pm-teal-strong)" />
@@ -66,6 +70,7 @@ export default function SignIn() {
             withAsterisk
             placeholder="hello@cifernest.io"
             size="md"
+            autoComplete="off"
           />
           <PasswordInput
             {...form.getInputProps('password')}
@@ -74,6 +79,7 @@ export default function SignIn() {
             placeholder="Your password"
             mt="md"
             size="md"
+            autoComplete="new-password"
           />
           <Group justify="space-between">
             <Checkbox label="Trust this device" />

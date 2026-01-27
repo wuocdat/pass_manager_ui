@@ -24,7 +24,10 @@
 }
 
 .main {
-    padding: 1.75rem 2rem 2.5rem;
+    padding-inline-start: calc(var(--app-shell-navbar-offset, 0px) + 2rem);
+    padding-inline-end: calc(var(--app-shell-aside-offset, 0px) + 2rem);
+    padding-top: calc(var(--app-shell-header-offset, 0px) + 1.75rem);
+    padding-bottom: calc(var(--app-shell-footer-offset, 0px) + 2.5rem);
 }
 
 .contentSurface {
