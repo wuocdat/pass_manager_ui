@@ -7,9 +7,6 @@ coverage
 .idea
 .git
 .gitignore
-nginx.conf
 npm-debug.log*
 yarn-error.log*
-.env
-.env.*
 *.md

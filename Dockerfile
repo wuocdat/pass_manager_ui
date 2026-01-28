@@ -1,5 +1,5 @@
-# Build + runtime (no nginx)
-FROM node:20-alpine
+# Build stage
+FROM node:20-alpine AS build
 WORKDIR /app
 
 # Enable corepack for Yarn 4
@@ -16,8 +16,14 @@ COPY . .
 
 RUN yarn build
 
-EXPOSE 4173
+# Runtime stage
+FROM nginx:1.27-alpine AS runtime
 
-# Vite preview serves the built dist folder
-ENV BROWSER=none
-CMD ["yarn", "preview", "--host", "0.0.0.0", "--open", "false"]
+# SPA fallback + static assets
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+COPY --from=build /app/dist /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
