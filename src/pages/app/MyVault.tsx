@@ -187,7 +187,7 @@ export default function MyVault() {
 
   const handleCreateFolder = async () => {
     if (!folderForm.name) {
-      setPasswordError('Folder name is required.');
+      setPasswordError('Cần nhập tên thư mục.');
       return;
     }
     setIsCreatingFolder(true);
@@ -216,11 +216,11 @@ export default function MyVault() {
 
   const handleCreatePassword = async () => {
     if (!masterKey) {
-      setPasswordError('Missing master key for encryption.');
+      setPasswordError('Thiếu khóa chính để mã hóa.');
       return;
     }
     if (!passwordForm.title || !passwordForm.password) {
-      setPasswordError('Title and password are required.');
+      setPasswordError('Cần nhập tiêu đề và mật khẩu.');
       return;
     }
     setIsCreatingPassword(true);
@@ -256,7 +256,7 @@ export default function MyVault() {
       setPasswordError(null);
     } catch (error) {
       console.error('Failed to create password', error);
-      setPasswordError('Failed to create password.');
+      setPasswordError('Tạo mật khẩu thất bại.');
     } finally {
       setIsCreatingPassword(false);
     }
@@ -264,7 +264,7 @@ export default function MyVault() {
 
   const handleRevealPassword = async (item: PasswordItem) => {
     if (!masterKey) {
-      setPasswordError('Missing master key for decryption.');
+      setPasswordError('Thiếu khóa chính để giải mã.');
       return;
     }
     if (revealedPasswords[item.id]) {
@@ -289,7 +289,7 @@ export default function MyVault() {
       }));
     } catch (error) {
       console.error('Failed to decrypt password', error);
-      setPasswordError('Failed to decrypt password.');
+      setPasswordError('Giải mã mật khẩu thất bại.');
     } finally {
       setIsDecryptingPassword(false);
     }
@@ -298,8 +298,8 @@ export default function MyVault() {
   const handleCopyPassword = async (item: PasswordItem) => {
     if (!masterKey) {
       notifications.show({
-        title: 'Missing master key',
-        message: 'Unable to copy password without a master key.',
+        title: 'Thiếu khóa chính',
+        message: 'Không thể sao chép mật khẩu khi thiếu khóa chính.',
         color: 'red',
       });
       return;
@@ -314,15 +314,15 @@ export default function MyVault() {
         ));
       await navigator.clipboard.writeText(plaintext);
       notifications.show({
-        title: 'Copied',
-        message: 'Password copied to clipboard.',
+        title: 'Đã sao chép',
+        message: 'Mật khẩu đã được sao chép vào clipboard.',
         color: 'teal',
       });
     } catch (error) {
       console.error('Failed to copy password', error);
       notifications.show({
-        title: 'Copy failed',
-        message: 'Unable to copy password. Please try again.',
+        title: 'Sao chép thất bại',
+        message: 'Không thể sao chép mật khẩu. Vui lòng thử lại.',
         color: 'red',
       });
     }
@@ -342,7 +342,7 @@ export default function MyVault() {
       });
     } catch (error) {
       console.error('Failed to delete password', error);
-      setPasswordError('Failed to delete password.');
+      setPasswordError('Xóa mật khẩu thất bại.');
     }
   };
 
@@ -381,7 +381,7 @@ export default function MyVault() {
       setPasswordToEdit(null);
     } catch (error) {
       console.error('Failed to update password', error);
-      setPasswordError('Failed to update password.');
+      setPasswordError('Cập nhật mật khẩu thất bại.');
     } finally {
       setIsUpdatingPassword(false);
     }
@@ -418,7 +418,7 @@ export default function MyVault() {
       setPasswords(passwordsData);
     } catch (error) {
       console.error('Failed to delete folder', error);
-      setPasswordError('Failed to delete folder.');
+      setPasswordError('Xóa thư mục thất bại.');
     }
   };
 
@@ -426,9 +426,9 @@ export default function MyVault() {
     <div className={classes.page}>
       <div className={classes.pageHeader}>
         <div>
-          <div className={classes.headerTitle}>My Vault</div>
+          <div className={classes.headerTitle}>Kho của tôi</div>
           <Text className={classes.muted}>
-            Organize passwords by folder, share them with confidence, and keep everything audited.
+            Sắp xếp mật khẩu theo thư mục, chia sẻ tự tin và theo dõi mọi hoạt động.
           </Text>
         </div>
         <Group>
@@ -438,7 +438,7 @@ export default function MyVault() {
             onClick={() => setIsCreateFolderOpen(true)}
             loading={isCreatingFolder}
           >
-            Create Folder
+            Tạo thư mục
           </Button>
           {selectedFolderId && (
             <Button
@@ -447,7 +447,7 @@ export default function MyVault() {
               color="red"
               onClick={openDeleteFolderConfirm}
             >
-              Delete Folder
+              Xóa thư mục
             </Button>
           )}
           <Button
@@ -456,7 +456,7 @@ export default function MyVault() {
             onClick={() => setIsCreatePasswordOpen(true)}
             loading={isCreatingPassword}
           >
-            Create Password
+            Tạo mật khẩu
           </Button>
         </Group>
       </div>
@@ -467,12 +467,12 @@ export default function MyVault() {
           setIsCreatePasswordOpen(false);
           setPasswordError(null);
         }}
-        title="Create Password"
+        title="Tạo mật khẩu"
         centered
       >
         <Group grow>
           <TextInput
-            label="Title"
+            label="Tiêu đề"
             placeholder="Gmail"
             value={passwordForm.title}
             onChange={(event) =>
@@ -481,8 +481,8 @@ export default function MyVault() {
             required
           />
           <Select
-            label="Folder"
-            placeholder="Select folder"
+            label="Thư mục"
+            placeholder="Chọn thư mục"
             data={folderOptions}
             value={passwordForm.folderId || null}
             onChange={(value) =>
@@ -492,7 +492,7 @@ export default function MyVault() {
           />
         </Group>
         <PasswordInput
-          label="Password"
+          label="Mật khẩu"
           placeholder="••••••••"
           value={passwordForm.password}
           onChange={(event) =>
@@ -511,8 +511,8 @@ export default function MyVault() {
           mt="sm"
         />
         <Textarea
-          label="Notes"
-          placeholder="Personal account"
+          label="Ghi chú"
+          placeholder="Tài khoản cá nhân"
           value={passwordForm.notes}
           onChange={(event) =>
             setPasswordForm((prev) => ({ ...prev, notes: event.currentTarget.value }))
@@ -527,14 +527,14 @@ export default function MyVault() {
         )}
         <Group justify="flex-end" mt="lg">
           <Button variant="default" onClick={() => setIsCreatePasswordOpen(false)}>
-            Cancel
+            Hủy
           </Button>
           <Button
             onClick={handleCreatePassword}
             loading={isCreatingPassword}
             disabled={!masterKey}
           >
-            Save Password
+            Lưu mật khẩu
           </Button>
         </Group>
       </Modal>
@@ -542,12 +542,12 @@ export default function MyVault() {
       <Modal
         opened={isCreateFolderOpen}
         onClose={() => setIsCreateFolderOpen(false)}
-        title="Create Folder"
+        title="Tạo thư mục"
         centered
       >
         <TextInput
-          label="Name"
-          placeholder="Personal"
+          label="Tên"
+          placeholder="Cá nhân"
           value={folderForm.name}
           onChange={(event) => {
             const value = event.currentTarget.value;
@@ -556,8 +556,8 @@ export default function MyVault() {
           required
         />
         <Textarea
-          label="Description"
-          placeholder="Optional description"
+          label="Mô tả"
+          placeholder="Mô tả (không bắt buộc)"
           value={folderForm.description}
           onChange={(event) =>
             setFolderForm((prev) => ({ ...prev, description: event.currentTarget.value }))
@@ -567,10 +567,10 @@ export default function MyVault() {
         />
         <Group justify="flex-end" mt="lg">
           <Button variant="default" onClick={() => setIsCreateFolderOpen(false)}>
-            Cancel
+            Hủy
           </Button>
           <Button onClick={handleCreateFolder} loading={isCreatingFolder}>
-            Create Folder
+            Tạo thư mục
           </Button>
         </Group>
       </Modal>
@@ -581,11 +581,11 @@ export default function MyVault() {
           setIsEditPasswordOpen(false);
           setPasswordToEdit(null);
         }}
-        title="Edit Password"
+        title="Sửa mật khẩu"
         centered
       >
         <TextInput
-          label="Title"
+          label="Tiêu đề"
           placeholder="Gmail"
           value={editPasswordForm.title}
           onChange={(event) => {
@@ -605,8 +605,8 @@ export default function MyVault() {
           mt="sm"
         />
         <Textarea
-          label="Notes"
-          placeholder="Optional notes"
+          label="Ghi chú"
+          placeholder="Ghi chú (không bắt buộc)"
           value={editPasswordForm.notes}
           onChange={(event) => {
             const value = event.currentTarget.value;
@@ -622,10 +622,10 @@ export default function MyVault() {
         )}
         <Group justify="flex-end" mt="lg">
           <Button variant="default" onClick={() => setIsEditPasswordOpen(false)}>
-            Cancel
+            Hủy
           </Button>
           <Button onClick={handleUpdatePassword} loading={isUpdatingPassword}>
-            Save Changes
+            Lưu thay đổi
           </Button>
         </Group>
       </Modal>
@@ -633,16 +633,16 @@ export default function MyVault() {
       <Modal
         opened={isDeleteConfirmOpen}
         onClose={closeDeleteConfirm}
-        title="Delete password"
+        title="Xóa mật khẩu"
         centered
       >
         <Text size="sm">
-          Are you sure you want to delete{passwordToDelete ? ` "${passwordToDelete.title}"` : ''}?
-          This action cannot be undone.
+          Bạn có chắc muốn xóa{passwordToDelete ? ` "${passwordToDelete.title}"` : ''}?
+          Hành động này không thể hoàn tác.
         </Text>
         <Group justify="flex-end" mt="lg">
           <Button variant="default" onClick={closeDeleteConfirm}>
-            Cancel
+            Hủy
           </Button>
           <Button
             color="red"
@@ -653,7 +653,7 @@ export default function MyVault() {
               closeDeleteConfirm();
             }}
           >
-            Delete
+            Xóa
           </Button>
         </Group>
       </Modal>
@@ -661,16 +661,16 @@ export default function MyVault() {
       <Modal
         opened={isDeleteFolderConfirmOpen}
         onClose={closeDeleteFolderConfirm}
-        title="Delete folder"
+        title="Xóa thư mục"
         centered
       >
         <Text size="sm">
-          Are you sure you want to delete{selectedFolder ? ` "${selectedFolder.name}"` : ''}?
-          This action cannot be undone.
+          Bạn có chắc muốn xóa{selectedFolder ? ` "${selectedFolder.name}"` : ''}?
+          Hành động này không thể hoàn tác.
         </Text>
         <Group justify="flex-end" mt="lg">
           <Button variant="default" onClick={closeDeleteFolderConfirm}>
-            Cancel
+            Hủy
           </Button>
           <Button
             color="red"
@@ -679,7 +679,7 @@ export default function MyVault() {
               closeDeleteFolderConfirm();
             }}
           >
-            Delete
+            Xóa
           </Button>
         </Group>
       </Modal>
@@ -687,12 +687,12 @@ export default function MyVault() {
       <div className={classes.twoColumn}>
         <div className={classes.panel}>
           <Group justify="space-between" mb="sm">
-            <Text fw={600}>Folder Tree</Text>
-            <Badge className={classes.pill}>Nested</Badge>
+            <Text fw={600}>Cây thư mục</Text>
+            <Badge className={classes.pill}>Lồng nhau</Badge>
           </Group>
           {folderLoadError && (
             <Text size="xs" className={classes.muted}>
-              Unable to load folders. Please try again.
+              Không thể tải thư mục. Vui lòng thử lại.
             </Text>
           )}
           {!folderLoadError && folderTree.map((folder) => (
@@ -717,11 +717,11 @@ export default function MyVault() {
 
         <div className={classes.panel}>
           <Group justify="space-between" mb="sm">
-            <Text fw={600}>Passwords</Text>
+            <Text fw={600}>Mật khẩu</Text>
             <Group gap="sm">
               <TextInput
                 leftSection={<IconSearch size={16} />}
-                placeholder="Search passwords..."
+                placeholder="Tìm mật khẩu..."
                 size="sm"
                 value={passwordSearch}
                 onChange={(event) => {
@@ -730,25 +730,25 @@ export default function MyVault() {
                 }}
               />
               <Button variant="light" size="sm" leftSection={<IconShare size={16} />}>
-                Share Selected
+                Chia sẻ đã chọn
               </Button>
             </Group>
           </Group>
 
           {passwordLoadError && (
             <Text size="xs" className={classes.muted}>
-              Unable to load passwords. Please try again.
+              Không thể tải mật khẩu. Vui lòng thử lại.
             </Text>
           )}
           <Table striped highlightOnHover withTableBorder>
             <Table.Thead className={classes.tableHeader}>
               <Table.Tr>
-                <Table.Th>Title</Table.Th>
-                <Table.Th>Username</Table.Th>
-                <Table.Th>Folder</Table.Th>
-                <Table.Th>Indicators</Table.Th>
-                <Table.Th>Password</Table.Th>
-                <Table.Th>Updated</Table.Th>
+                <Table.Th>Tiêu đề</Table.Th>
+                <Table.Th>Tên người dùng</Table.Th>
+                <Table.Th>Thư mục</Table.Th>
+                <Table.Th>Trạng thái</Table.Th>
+                <Table.Th>Mật khẩu</Table.Th>
+                <Table.Th>Cập nhật</Table.Th>
                 <Table.Th />
               </Table.Tr>
             </Table.Thead>
@@ -762,10 +762,10 @@ export default function MyVault() {
                     </Group>
                   </Table.Td>
                   <Table.Td>{row.username}</Table.Td>
-                  <Table.Td>{row.folder?.name || 'Unassigned'}</Table.Td>
+                  <Table.Td>{row.folder?.name || 'Chưa gán'}</Table.Td>
                   <Table.Td>
                     <Group gap="xs">
-                      {row.isPublic && <Badge className={classes.badgePublic}>Public</Badge>}
+                      {row.isPublic && <Badge className={classes.badgePublic}>Công khai</Badge>}
                     </Group>
                   </Table.Td>
                   <Table.Td>
@@ -776,14 +776,14 @@ export default function MyVault() {
                     <Group gap="xs" justify="flex-end" wrap="nowrap">
                       <ActionIcon
                         variant="subtle"
-                        aria-label="Copy password"
+                        aria-label="Sao chép mật khẩu"
                         onClick={() => handleCopyPassword(row)}
                       >
                         <IconCopy size={16} />
                       </ActionIcon>
                       <ActionIcon
                         variant="subtle"
-                        aria-label={revealedPasswords[row.id] ? 'Hide password' : 'View password'}
+                        aria-label={revealedPasswords[row.id] ? 'Ẩn mật khẩu' : 'Xem mật khẩu'}
                         onClick={() => handleRevealPassword(row)}
                         disabled={isDecryptingPassword}
                       >
@@ -792,14 +792,14 @@ export default function MyVault() {
                       <ActionIcon
                         variant="subtle"
                         color="red"
-                        aria-label="Delete password"
+                        aria-label="Xóa mật khẩu"
                         onClick={() => openDeleteConfirm(row)}
                       >
                         <IconTrash size={16} />
                       </ActionIcon>
                       <ActionIcon
                         variant="subtle"
-                        aria-label="Edit password"
+                        aria-label="Sửa mật khẩu"
                         onClick={() => openEditPassword(row)}
                       >
                         <IconEdit size={16} />

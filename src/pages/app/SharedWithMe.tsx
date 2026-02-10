@@ -12,31 +12,36 @@ const sharedFolders = [
   { name: 'Finance', owner: 'Maya Chen', permission: 'Read-only', items: 6 },
 ];
 
+const permissionLabels: Record<string, string> = {
+  'Read-only': 'Chỉ đọc',
+  Editable: 'Có thể sửa',
+};
+
 export default function SharedWithMe() {
   return (
     <div className={classes.page}>
       <div className={classes.pageHeader}>
         <div>
-          <div className={classes.headerTitle}>Shared With Me</div>
+          <div className={classes.headerTitle}>Được chia sẻ với tôi</div>
           <Text className={classes.muted}>
-            Passwords and folders shared by teammates with clear permission indicators.
+            Mật khẩu và thư mục do đồng đội chia sẻ với chỉ báo quyền rõ ràng.
           </Text>
         </div>
-        <Badge className={classes.pill}>Incoming</Badge>
+        <Badge className={classes.pill}>Đến</Badge>
       </div>
 
       <Card className={classes.card}>
         <Group mb="sm" align="center">
           <IconLock size={18} />
-          <Text fw={600}>Passwords shared by other users</Text>
+          <Text fw={600}>Mật khẩu được người khác chia sẻ</Text>
         </Group>
         <Table striped withTableBorder>
           <Table.Thead className={classes.tableHeader}>
             <Table.Tr>
-              <Table.Th>Password</Table.Th>
-              <Table.Th>Owner</Table.Th>
-              <Table.Th>Permission</Table.Th>
-              <Table.Th>Last Accessed</Table.Th>
+              <Table.Th>Mật khẩu</Table.Th>
+              <Table.Th>Chủ sở hữu</Table.Th>
+              <Table.Th>Quyền</Table.Th>
+              <Table.Th>Truy cập gần nhất</Table.Th>
             </Table.Tr>
           </Table.Thead>
           <Table.Tbody>
@@ -46,7 +51,7 @@ export default function SharedWithMe() {
                 <Table.Td>{item.owner}</Table.Td>
                 <Table.Td>
                   <Badge className={item.permission === 'Editable' ? classes.badgeShared : classes.badgeReadonly}>
-                    {item.permission}
+                    {permissionLabels[item.permission] || item.permission}
                   </Badge>
                 </Table.Td>
                 <Table.Td>{item.lastAccess}</Table.Td>
@@ -59,7 +64,7 @@ export default function SharedWithMe() {
       <Card className={classes.card}>
         <Group mb="sm" align="center">
           <IconFolder size={18} />
-          <Text fw={600}>Folders shared by other users</Text>
+          <Text fw={600}>Thư mục được người khác chia sẻ</Text>
         </Group>
         <div className={classes.sectionGrid}>
           {sharedFolders.map((folder) => (
@@ -69,15 +74,15 @@ export default function SharedWithMe() {
                   <IconUsers size={18} />
                   <div>
                     <Text fw={600}>{folder.name}</Text>
-                    <Text size="xs" className={classes.muted}>Owner: {folder.owner}</Text>
+                    <Text size="xs" className={classes.muted}>Chủ sở hữu: {folder.owner}</Text>
                   </div>
                 </Group>
                 <Badge className={folder.permission === 'Editable' ? classes.badgeShared : classes.badgeReadonly}>
-                  {folder.permission}
+                  {permissionLabels[folder.permission] || folder.permission}
                 </Badge>
               </Group>
               <Text size="sm" mt="sm" className={classes.muted}>
-                {folder.items} passwords inside this folder.
+                {folder.items} mật khẩu trong thư mục này.
               </Text>
             </Card>
           ))}

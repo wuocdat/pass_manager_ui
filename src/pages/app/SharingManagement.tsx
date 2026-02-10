@@ -17,96 +17,106 @@ const sharedAccess = [
   { name: 'Nora Lane', permission: 'Read', type: 'Password', target: 'Figma Org' },
 ];
 
+const permissionLabels: Record<string, string> = {
+  Read: 'Chỉ đọc',
+  Edit: 'Chỉnh sửa',
+};
+
+const typeLabels: Record<string, string> = {
+  Password: 'Mật khẩu',
+  Folder: 'Thư mục',
+};
+
 export default function SharingManagement() {
   return (
     <div className={classes.page}>
       <div className={classes.pageHeader}>
         <div>
-          <div className={classes.headerTitle}>Sharing Management</div>
+          <div className={classes.headerTitle}>Quản lý chia sẻ</div>
           <Text className={classes.muted}>
-            Grant access with precision and adjust permissions any time.
+            Cấp quyền chính xác và điều chỉnh quyền bất kỳ lúc nào.
           </Text>
         </div>
-        <Badge className={classes.pill}>Control Center</Badge>
+        <Badge className={classes.pill}>Trung tâm điều khiển</Badge>
       </div>
 
       <div className={classes.sectionGrid}>
         <div className={classes.panel}>
           <Group mb="sm">
             <IconShare size={18} />
-            <Text fw={600}>Share Password</Text>
+            <Text fw={600}>Chia sẻ mật khẩu</Text>
           </Group>
           <Select
-            label="Select password"
-            placeholder="Choose a credential"
+            label="Chọn mật khẩu"
+            placeholder="Chọn thông tin đăng nhập"
             data={['Stripe Dashboard', 'AWS Root', 'Figma Org']}
           />
           <Select
-            label="Select user"
-            placeholder="Search team member"
+            label="Chọn người dùng"
+            placeholder="Tìm thành viên"
             mt="md"
             data={['Ava Kim', 'Ravi Singh', 'Nora Lane']}
             leftSection={<IconUserPlus size={16} />}
           />
           <Text size="sm" fw={600} mt="md">
-            Permission
+            Quyền
           </Text>
           <SegmentedControl
             fullWidth
-            data={['Read', 'Edit']}
+            data={['Chỉ đọc', 'Chỉnh sửa']}
             color="teal"
             mt="xs"
           />
           <Button mt="md" fullWidth color="teal">
-            Share password
+            Chia sẻ mật khẩu
           </Button>
         </div>
 
         <div className={classes.panel}>
           <Group mb="sm">
             <IconUsers size={18} />
-            <Text fw={600}>Share Folder</Text>
+            <Text fw={600}>Chia sẻ thư mục</Text>
           </Group>
           <Select
-            label="Select folder"
-            placeholder="Choose a folder"
-            data={['Marketing', 'Finance', 'Vendors']}
+            label="Chọn thư mục"
+            placeholder="Chọn thư mục"
+            data={['Marketing', 'Tài chính', 'Nhà cung cấp']}
           />
           <Select
-            label="Select user"
-            placeholder="Search team member"
+            label="Chọn người dùng"
+            placeholder="Tìm thành viên"
             mt="md"
             data={['Ava Kim', 'Ravi Singh', 'Nora Lane']}
             leftSection={<IconUserPlus size={16} />}
           />
           <Text size="sm" fw={600} mt="md">
-            Permission
+            Quyền
           </Text>
           <SegmentedControl
             fullWidth
-            data={['Read', 'Edit']}
+            data={['Chỉ đọc', 'Chỉnh sửa']}
             color="teal"
             mt="xs"
           />
           <Button mt="md" fullWidth variant="light" color="teal">
-            Share folder
+            Chia sẻ thư mục
           </Button>
         </div>
       </div>
 
       <div className={classes.panel}>
         <Group justify="space-between" mb="sm">
-          <Text fw={600}>Current Access</Text>
-          <Badge className={classes.pill}>Manage</Badge>
+          <Text fw={600}>Quyền hiện tại</Text>
+          <Badge className={classes.pill}>Quản lý</Badge>
         </Group>
         <Table striped withTableBorder>
           <Table.Thead className={classes.tableHeader}>
             <Table.Tr>
-              <Table.Th>User</Table.Th>
-              <Table.Th>Permission</Table.Th>
-              <Table.Th>Type</Table.Th>
-              <Table.Th>Target</Table.Th>
-              <Table.Th>Actions</Table.Th>
+              <Table.Th>Người dùng</Table.Th>
+              <Table.Th>Quyền</Table.Th>
+              <Table.Th>Loại</Table.Th>
+              <Table.Th>Mục tiêu</Table.Th>
+              <Table.Th>Hành động</Table.Th>
             </Table.Tr>
           </Table.Thead>
           <Table.Tbody>
@@ -115,15 +125,15 @@ export default function SharingManagement() {
                 <Table.Td>{item.name}</Table.Td>
                 <Table.Td>
                   <Badge className={item.permission === 'Edit' ? classes.badgeShared : classes.badgeReadonly}>
-                    {item.permission}
+                    {permissionLabels[item.permission] || item.permission}
                   </Badge>
                 </Table.Td>
-                <Table.Td>{item.type}</Table.Td>
+                <Table.Td>{typeLabels[item.type] || item.type}</Table.Td>
                 <Table.Td>{item.target}</Table.Td>
                 <Table.Td>
                   <Group gap="xs">
-                    <Button size="xs" variant="light">Update</Button>
-                    <Button size="xs" color="red" variant="subtle">Remove</Button>
+                    <Button size="xs" variant="light">Cập nhật</Button>
+                    <Button size="xs" color="red" variant="subtle">Gỡ</Button>
                   </Group>
                 </Table.Td>
               </Table.Tr>

@@ -21,7 +21,7 @@ const appConfig: AppConfig = {
   authenticatedEntryPath: '/vault',
   unAuthenticatedEntryPath: '/sign-in',
   enableMock,
-  locale: 'en',
+  locale: 'vi',
 }
 
 export default appConfig

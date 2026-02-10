@@ -22,7 +22,7 @@ export default function PopOverTargetContent() {
         <Avatar color="teal" radius="lg">{initials}</Avatar>
         <div>
           <Text style={{ fontWeight: 'bold' }} size="md">
-            {fullName || 'Vault Member'}
+            {fullName || 'Thành viên kho'}
           </Text>
           <Text size="xs">
             {email || 'member@vault.io'}

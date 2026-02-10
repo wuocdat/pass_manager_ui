@@ -21,33 +21,33 @@ export default function Register() {
             <IconShieldLock size={28} color="var(--pm-teal-strong)" />
             <Text className={classes.brand}>CipherNest</Text>
           </Group>
-          <Title order={2}>Create your vault</Title>
+          <Title order={2}>Tạo kho của bạn</Title>
           <Text className={classes.subtitle}>
-            Set up your workspace and start storing credentials with peace of mind.
+            Thiết lập không gian làm việc và bắt đầu lưu thông tin đăng nhập một cách an tâm.
           </Text>
-          <TextInput label="Full name" placeholder="Nia Joseph" size="md" />
-          <TextInput label="Work email" placeholder="team@cifernest.io" size="md" />
-          <PasswordInput label="Create password" placeholder="At least 12 characters" size="md" />
-          <PasswordInput label="Confirm password" placeholder="Repeat your password" size="md" />
-          <Checkbox label="I agree to the terms and privacy policy" />
+          <TextInput label="Họ và tên" placeholder="Nia Joseph" size="md" />
+          <TextInput label="Email công việc" placeholder="team@cifernest.io" size="md" />
+          <PasswordInput label="Tạo mật khẩu" placeholder="Ít nhất 12 ký tự" size="md" />
+          <PasswordInput label="Xác nhận mật khẩu" placeholder="Nhập lại mật khẩu" size="md" />
+          <Checkbox label="Tôi đồng ý với điều khoản và chính sách quyền riêng tư" />
           <Button size="md">
-            Create account
+            Tạo tài khoản
           </Button>
           <Text size="sm" ta="center">
-            Already have an account? <Link className={classes.link} to="/sign-in">Sign in</Link>
+            Đã có tài khoản? <Link className={classes.link} to="/sign-in">Đăng nhập</Link>
           </Text>
         </div>
       </div>
       <div className={classes.hero}>
-        <Title order={1}>Start with a clean, secure foundation.</Title>
+        <Title order={1}>Bắt đầu với nền tảng sạch và an toàn.</Title>
         <Text className={classes.subtitle}>
-          Invite teammates, configure your master key, and keep public credentials read-only
-          from day one.
+          Mời đồng đội, cấu hình khóa chính và giữ thông tin công khai ở chế độ chỉ đọc
+          ngay từ đầu.
         </Text>
         <div className={classes.heroCard}>
-          <Text fw={600} mb={6}>Included with every vault</Text>
+          <Text fw={600} mb={6}>Có trong mọi kho</Text>
           <Text size="sm" className={classes.subtitle}>
-            Role-based access • Audit logs • End-to-end encrypted folders
+            Phân quyền theo vai trò • Nhật ký kiểm toán • Thư mục mã hóa đầu-cuối
           </Text>
         </div>
       </div>

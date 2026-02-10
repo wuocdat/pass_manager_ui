@@ -5,18 +5,18 @@ export function Welcome() {
   return (
     <>
       <Title className={classes.title} ta="center" mt={100}>
-        Welcome to{' '}
+        Chào mừng đến với{' '}
         <Text inherit variant="gradient" component="span" gradient={{ from: 'pink', to: 'yellow' }}>
           Mantine
         </Text>
       </Title>
       <Text c="dimmed" ta="center" size="lg" maw={580} mx="auto" mt="xl">
-        This starter Vite project includes a minimal setup, if you want to learn more on Mantine +
-        Vite integration follow{' '}
+        Dự án khởi đầu Vite này có cấu hình tối thiểu. Nếu bạn muốn tìm hiểu thêm về việc tích hợp
+        Mantine + Vite, hãy xem{' '}
         <Anchor href="https://mantine.dev/guides/vite/" size="lg">
-          this guide
+          hướng dẫn này
         </Anchor>
-        . To get started edit pages/Home.page.tsx file.
+        . Để bắt đầu, hãy chỉnh sửa file pages/Home.page.tsx.
       </Text>
     </>
   );

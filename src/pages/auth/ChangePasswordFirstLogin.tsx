@@ -21,12 +21,12 @@ export default function ChangePasswordFirstLogin() {
   const schema = yup.object().shape({
     newPassword: yup
       .string()
-      .required('Please enter a new password')
-      .min(8, 'Password must be at least 8 characters'),
+      .required('Vui lòng nhập mật khẩu mới')
+      .min(8, 'Mật khẩu phải có ít nhất 8 ký tự'),
     confirmPassword: yup
       .string()
-      .oneOf([yup.ref('newPassword')], 'Passwords do not match')
-      .required('Please confirm the new password'),
+      .oneOf([yup.ref('newPassword')], 'Mật khẩu không khớp')
+      .required('Vui lòng xác nhận mật khẩu mới'),
   })
 
   const form = useForm({
@@ -60,9 +60,9 @@ export default function ChangePasswordFirstLogin() {
             <IconShieldLock size={28} color="var(--pm-teal-strong)" />
             <Text className={classes.brand}>CipherNest</Text>
           </Group>
-          <Title order={2}>Change your password</Title>
+          <Title order={2}>Đổi mật khẩu</Title>
           <Text className={classes.subtitle}>
-            Your account requires a password update before continuing.
+            Tài khoản của bạn cần cập nhật mật khẩu trước khi tiếp tục.
           </Text>
           {error ? (
             <Text c="red" size="sm">
@@ -72,8 +72,8 @@ export default function ChangePasswordFirstLogin() {
           <PasswordInput
             {...form.getInputProps('newPassword')}
             name="newPassword"
-            label="New password"
-            placeholder="New password"
+            label="Mật khẩu mới"
+            placeholder="Mật khẩu mới"
             mt="md"
             size="md"
             disabled={loading}
@@ -81,21 +81,21 @@ export default function ChangePasswordFirstLogin() {
           <PasswordInput
             {...form.getInputProps('confirmPassword')}
             name="confirmPassword"
-            label="Confirm new password"
-            placeholder="Confirm new password"
+            label="Xác nhận mật khẩu mới"
+            placeholder="Xác nhận mật khẩu mới"
             mt="md"
             size="md"
             disabled={loading}
           />
           <Button loading={loading} type="submit" fullWidth size="md" mt="md">
-            Update password
+            Cập nhật mật khẩu
           </Button>
         </div>
       </form>
       <div className={classes.hero}>
-        <Title order={1}>One step to secure your vault.</Title>
+        <Title order={1}>Một bước để bảo vệ kho của bạn.</Title>
         <Text className={classes.subtitle}>
-          Use a strong passphrase to keep every credential protected.
+          Hãy dùng mật khẩu mạnh để bảo vệ mọi thông tin đăng nhập.
         </Text>
       </div>
     </div>

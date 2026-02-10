@@ -28,9 +28,9 @@ export default function UserManagement() {
       fullName: '',
     },
     validate: {
-      email: (value) => (value.trim().length === 0 ? 'Email is required' : null),
-      password: (value) => (value.trim().length === 0 ? 'Password is required' : null),
-      fullName: (value) => (value.trim().length === 0 ? 'Full name is required' : null),
+      email: (value) => (value.trim().length === 0 ? 'Cần nhập email' : null),
+      password: (value) => (value.trim().length === 0 ? 'Cần nhập mật khẩu' : null),
+      fullName: (value) => (value.trim().length === 0 ? 'Cần nhập họ và tên' : null),
     },
   })
 
@@ -71,7 +71,7 @@ export default function UserManagement() {
   }
 
   const handleDelete = async (user: UserItem) => {
-    if (!window.confirm(`Delete user ${user.email}?`)) {
+    if (!window.confirm(`Xóa người dùng ${user.email}?`)) {
       return
     }
     setDeletingId(user.id)
@@ -90,18 +90,18 @@ export default function UserManagement() {
     <div className={classes.page}>
       <div className={classes.pageHeader}>
         <div>
-          <div className={classes.headerTitle}>User Management</div>
+          <div className={classes.headerTitle}>Quản lý người dùng</div>
           <Text className={classes.muted}>
-            Create, manage, and remove users who can access the vault.
+            Tạo, quản lý và xóa người dùng có thể truy cập kho.
           </Text>
         </div>
-        <Badge className={classes.pill}>Admin only</Badge>
+        <Badge className={classes.pill}>Chỉ quản trị</Badge>
       </div>
 
       <div className={classes.panel}>
         <Group mb="sm">
           <IconUserPlus size={18} />
-          <Text fw={600}>Add user</Text>
+          <Text fw={600}>Thêm người dùng</Text>
         </Group>
         <form onSubmit={form.onSubmit(handleCreate)}>
           <Group grow align="flex-start">
@@ -112,7 +112,7 @@ export default function UserManagement() {
               {...form.getInputProps('email')}
             />
             <TextInput
-              label="Full name"
+              label="Họ và tên"
               placeholder="Jane Doe"
               withAsterisk
               {...form.getInputProps('fullName')}
@@ -120,8 +120,8 @@ export default function UserManagement() {
           </Group>
           <Group grow mt="md" align="flex-start">
             <PasswordInput
-              label="Password"
-              placeholder="Set a temporary password"
+              label="Mật khẩu"
+              placeholder="Đặt mật khẩu tạm thời"
               withAsterisk
               {...form.getInputProps('password')}
             />
@@ -133,7 +133,7 @@ export default function UserManagement() {
           ) : null}
           <Group justify="flex-end" mt="md">
             <Button type="submit" loading={submitting} disabled={isBusy}>
-              Create user
+              Tạo người dùng
             </Button>
           </Group>
         </form>
@@ -143,9 +143,9 @@ export default function UserManagement() {
         <Group justify="space-between" mb="sm">
           <Group>
             <IconUsers size={18} />
-            <Text fw={600}>All users</Text>
+            <Text fw={600}>Tất cả người dùng</Text>
           </Group>
-          <Badge className={classes.pill}>{users.length} users</Badge>
+          <Badge className={classes.pill}>{users.length} người dùng</Badge>
         </Group>
         {error ? (
           <Text size="sm" c="red" mb="sm">
@@ -156,9 +156,9 @@ export default function UserManagement() {
           <Table.Thead className={classes.tableHeader}>
             <Table.Tr>
               <Table.Th>Email</Table.Th>
-              <Table.Th>Full name</Table.Th>
-              <Table.Th>Role</Table.Th>
-              <Table.Th>Actions</Table.Th>
+              <Table.Th>Họ và tên</Table.Th>
+              <Table.Th>Vai trò</Table.Th>
+              <Table.Th>Hành động</Table.Th>
             </Table.Tr>
           </Table.Thead>
           <Table.Tbody>
@@ -168,7 +168,7 @@ export default function UserManagement() {
                 <Table.Td>{user.fullName}</Table.Td>
                 <Table.Td>
                   <Badge className={user.role === 'admin' ? classes.badgeShared : classes.badgePublic}>
-                    {user.role}
+                    {user.role === 'admin' ? 'Quản trị' : 'Thành viên'}
                   </Badge>
                 </Table.Td>
                 <Table.Td>
@@ -179,7 +179,7 @@ export default function UserManagement() {
                     onClick={() => handleDelete(user)}
                     loading={deletingId === user.id}
                   >
-                    Delete
+                    Xóa
                   </Button>
                 </Table.Td>
               </Table.Tr>
@@ -188,7 +188,7 @@ export default function UserManagement() {
               <Table.Tr>
                 <Table.Td colSpan={4}>
                   <Text size="sm" c="dimmed">
-                    No users found.
+                    Không tìm thấy người dùng.
                   </Text>
                 </Table.Td>
               </Table.Tr>

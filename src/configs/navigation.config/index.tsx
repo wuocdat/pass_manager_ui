@@ -12,7 +12,7 @@ const navigationConfig: NavigationTree[] = [
   {
     key: 'vault',
     path: '/vault',
-    title: 'My Vault',
+    title: 'Kho của tôi',
     translateKey: '',
     icon: IconLock,
     authority: [],
@@ -21,7 +21,7 @@ const navigationConfig: NavigationTree[] = [
   {
     key: 'shared',
     path: '/shared',
-    title: 'Shared With Me',
+    title: 'Được chia sẻ với tôi',
     translateKey: '',
     icon: IconUsers,
     authority: [],
@@ -30,7 +30,7 @@ const navigationConfig: NavigationTree[] = [
   {
     key: 'public',
     path: '/public',
-    title: 'Public Passwords',
+    title: 'Mật khẩu công khai',
     translateKey: '',
     icon: IconWorld,
     authority: [],
@@ -39,7 +39,7 @@ const navigationConfig: NavigationTree[] = [
   {
     key: 'activity',
     path: '/activity',
-    title: 'Activity Log',
+    title: 'Nhật ký hoạt động',
     translateKey: '',
     icon: IconActivity,
     authority: [],
@@ -48,7 +48,7 @@ const navigationConfig: NavigationTree[] = [
   {
     key: 'sharing',
     path: '/sharing',
-    title: 'Sharing',
+    title: 'Chia sẻ',
     translateKey: '',
     icon: IconShare,
     authority: [],
@@ -57,7 +57,7 @@ const navigationConfig: NavigationTree[] = [
   {
     key: 'users',
     path: '/users',
-    title: 'Users',
+    title: 'Người dùng',
     translateKey: '',
     icon: IconUsers,
     authority: ['admin'],
@@ -66,7 +66,7 @@ const navigationConfig: NavigationTree[] = [
   {
     key: 'settings',
     path: '/settings',
-    title: 'Settings',
+    title: 'Cài đặt',
     translateKey: '',
     icon: IconSettings,
     authority: [],

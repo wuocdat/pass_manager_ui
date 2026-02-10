@@ -17,27 +17,34 @@ const actionMeta: Record<string, ReactNode> = {
   'Share Folder': <IconStack2 size={16} />,
 };
 
+const actionLabels: Record<string, string> = {
+  'View Password': 'Xem mật khẩu',
+  'Edit Password': 'Sửa mật khẩu',
+  'Share Password': 'Chia sẻ mật khẩu',
+  'Share Folder': 'Chia sẻ thư mục',
+};
+
 export default function ActivityLog() {
   return (
     <div className={classes.page}>
       <div className={classes.pageHeader}>
         <div>
-          <div className={classes.headerTitle}>Activity Log</div>
+          <div className={classes.headerTitle}>Nhật ký hoạt động</div>
           <Text className={classes.muted}>
-            Track every view, edit, and share event across your vault.
+            Theo dõi mọi lượt xem, chỉnh sửa và chia sẻ trong kho.
           </Text>
         </div>
-        <Badge className={classes.pill}>Audit Trail</Badge>
+        <Badge className={classes.pill}>Dấu vết kiểm toán</Badge>
       </div>
 
       <div className={classes.panel}>
         <Table striped withTableBorder>
           <Table.Thead className={classes.tableHeader}>
             <Table.Tr>
-              <Table.Th>Action</Table.Th>
-              <Table.Th>Actor</Table.Th>
-              <Table.Th>Target</Table.Th>
-              <Table.Th>Timestamp</Table.Th>
+              <Table.Th>Hành động</Table.Th>
+              <Table.Th>Người thực hiện</Table.Th>
+              <Table.Th>Mục tiêu</Table.Th>
+              <Table.Th>Thời điểm</Table.Th>
             </Table.Tr>
           </Table.Thead>
           <Table.Tbody>
@@ -46,7 +53,7 @@ export default function ActivityLog() {
                 <Table.Td>
                   <Group gap="xs">
                     {actionMeta[item.action]}
-                    <Text fw={600}>{item.action}</Text>
+                    <Text fw={600}>{actionLabels[item.action] || item.action}</Text>
                   </Group>
                 </Table.Td>
                 <Table.Td>{item.actor}</Table.Td>

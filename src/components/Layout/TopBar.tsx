@@ -24,7 +24,7 @@ export default function TopBar() {
     <Group justify="space-between" w="100%" gap="lg" style={{ flex: 1 }}>
       <TextInput
         leftSection={<IconSearch size={18} />}
-        placeholder="Search passwords, folders, people..."
+        placeholder="Tìm mật khẩu, thư mục, người dùng..."
         radius="xl"
         style={{ flex: 1, maxWidth: 560 }}
         styles={{
@@ -35,7 +35,7 @@ export default function TopBar() {
         }}
       />
       <Group gap="sm" wrap="nowrap">
-        <Tooltip label="Notifications" position="bottom">
+        <Tooltip label="Thông báo" position="bottom">
           <ActionIcon variant="subtle" size="lg" radius="xl">
             <IconBell size={20} />
           </ActionIcon>
@@ -48,7 +48,7 @@ export default function TopBar() {
               </Avatar>
               <div>
                 <Text size="sm" fw={600} lineClamp={1}>
-                  {fullName || 'Vault Member'}
+                  {fullName || 'Thành viên kho'}
                 </Text>
                 <Text size="xs" c="dimmed" lineClamp={1}>
                   {email || 'member@vault.io'}
@@ -58,12 +58,12 @@ export default function TopBar() {
             </Group>
           </Menu.Target>
           <Menu.Dropdown>
-            <Menu.Label>Account</Menu.Label>
+            <Menu.Label>Tài khoản</Menu.Label>
             <Menu.Item leftSection={<IconSettings size={16} />} onClick={() => navigate('/settings')}>
-              Profile Settings
+              Cài đặt hồ sơ
             </Menu.Item>
             <Menu.Item leftSection={<IconLogout size={16} />} onClick={() => signOut()}>
-              Sign out
+              Đăng xuất
             </Menu.Item>
           </Menu.Dropdown>
         </Menu>

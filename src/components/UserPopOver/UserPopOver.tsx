@@ -21,14 +21,14 @@ export default function UserPopOver() {
         </Popover.Target>
         <Popover.Dropdown>
           <Text size="xs" fw={600}>
-            Quick actions
+            Thao tác nhanh
           </Text>
           <Text size="xs" c="dimmed" mt={6}>
-            Switch workspace or open settings from the top bar.
+            Chuyển không gian làm việc hoặc mở cài đặt từ thanh trên.
           </Text>
           <Divider my="sm" />
-          <Text size="xs">Profile</Text>
-          <Text size="xs" c="dimmed">Security</Text>
+          <Text size="xs">Hồ sơ</Text>
+          <Text size="xs" c="dimmed">Bảo mật</Text>
         </Popover.Dropdown>
       </Popover>
     </div>
